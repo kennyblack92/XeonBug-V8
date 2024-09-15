@@ -1,19 +1,25 @@
-name: Deploy to Production
+name: Deploy XeonBug-V8
 
 on:
   push:
-    branches:
-      - main
+    branches: ['master']
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: npm install
-
       - name: Start application
         run: npm start
+        env:
+          NODE_ENV: production
+      - name: Deploy to Node.js environment
+        run: |
+          # Add deployment script here, if needed
+          # For example, you can use a Node.js deployment action
+          # uses: actions/deploy-nodejs@v1
+          # with:
+          #   node-version: '14'
+          #   deployment-script: 'npm run deploy'
